@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="admin-page">
+
+  <div class="admin-topbar">
+    <div class="container">
+      <div>
+        <h1>لوحة التحكم</h1>
+        <div class="admin-user">مرحبًا، {{ session.get('username', 'admin') }}</div>
+      </div>
+      <div class="admin-actions">
+        <a class="btn btn-ghost" href="{{ url_for('index') }}" target="_blank" rel="noopener noreferrer">
+          👁️ فتح الصفحة الرئيسية
+        </a>
+        <a class="btn btn-ghost" href="{{ url_for('admin_logout') }}">تسجيل خروج</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-body">
+    <form id="settings-form" novalidate>
+
+      <div class="admin-card">
+        <h2>بيانات الوظيفة</h2>
+        <p class="card-desc">هذه البيانات تظهر مباشرة في الصفحة الرئيسية.</p>
+
+        <div class="row-2">
+          <div class="field" data-field="company_name">
+            <label for="company_name">اسم الشركة</label>
+            <input type="text" id="company_name" name="company_name" value="{{ settings.company_name }}">
+            <div class="field-error"></div>
+          </div>
+          <div class="field" data-field="job_title">
+            <label for="job_title">اسم الوظيفة</label>
+            <input type="text" id="job_title" name="job_title" value="{{ settings.job_title }}">
+            <div class="field-error"></div>
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field" data-field="location">
+            <label for="location">مكان العمل</label>
+            <input type="text" id="location" name="location" value="{{ settings.location }}">
+            <div class="field-error"></div>
+          </div>
+          <div class="field" data-field="working_hours">
+            <label for="working_hours">مواعيد العمل</label>
+            <input type="text" id="working_hours" name="working_hours" value="{{ settings.working_hours }}">
+            <div class="field-error"></div>
+          </div>
+        </div>
+
+        <div class="field" data-field="days_off">
+          <label for="days_off">أيام الإجازة</label>
+          <input type="text" id="days_off" name="days_off" value="{{ settings.days_off }}">
+          <div class="field-error"></div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h2>ليه ينضم لينا؟ (المميزات)</h2>
+        <p class="card-desc">اكتب كل ميزة في سطر منفصل.</p>
+        <div class="field" data-field="benefits">
+          <textarea id="benefits" name="benefits" rows="6">{{ settings.benefits }}</textarea>
+          <div class="field-error"></div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h2>مين نبحث عنه؟ (المتطلبات)</h2>
+        <p class="card-desc">اكتب كل متطلب في سطر منفصل.</p>
+        <div class="field" data-field="requirements">
+          <textarea id="requirements" name="requirements" rows="6">{{ settings.requirements }}</textarea>
+          <div class="field-error"></div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h2>واتساب</h2>
+        <p class="card-desc">كل أزرار واتساب في الصفحة الرئيسية تستخدم هذا الرابط تلقائيًا.</p>
+        <div class="field" data-field="whatsapp_link">
+          <label for="whatsapp_link">لينك جروب واتساب</label>
+          <input type="text" id="whatsapp_link" name="whatsapp_link" value="{{ settings.whatsapp_link }}" placeholder="https://chat.whatsapp.com/XXXXXXXX" dir="ltr" style="text-align: left;">
+          <div class="field-hint">يجب أن يبدأ الرابط بـ https://</div>
+          <div class="field-error"></div>
+        </div>
+      </div>
+
+      <div class="save-bar">
+        <span id="save-status"></span>
+        <button type="submit" class="btn btn-whatsapp" id="save-btn">💾 حفظ التعديلات</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

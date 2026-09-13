@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ settings.job_title }} - {{ settings.company_name }}</title>
+  <meta name="description" content="فرصة عمل: {{ settings.job_title }} في {{ settings.company_name }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <span class="hero-eyebrow">🚀 مطلوب موظفين</span>
+      <h1>ابدأ خطوتك المهنية الجديدة</h1>
+      <p class="hero-sub">انضم لفريقنا وابدأ المرحلة الجديدة من مسيرتك المهنية.</p>
+      <div class="hero-cta">
+        <a
+          class="btn btn-whatsapp"
+          id="whatsapp-btn-hero"
+          href="{{ settings.whatsapp_link }}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          💬 اعرف أكتر على واتساب
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Job info panel -->
+  <div class="container info-panel-wrap">
+    <div class="info-panel">
+      <div class="info-item">
+        <span class="info-icon">🏢</span>
+        <div class="info-text">
+          <div class="info-label">الشركة</div>
+          <div class="info-value">{{ settings.company_name }}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📍</span>
+        <div class="info-text">
+          <div class="info-label">مكان العمل</div>
+          <div class="info-value">{{ settings.location }}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🕒</span>
+        <div class="info-text">
+          <div class="info-label">مواعيد العمل</div>
+          <div class="info-value">{{ settings.working_hours }}</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📅</span>
+        <div class="info-text">
+          <div class="info-label">أيام الإجازة</div>
+          <div class="info-value">{{ settings.days_off }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job title strip -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container section-head" style="margin-bottom: 0;">
+      <h2>{{ settings.job_title }}</h2>
+      <p>فرصة متاحة الآن في {{ settings.company_name }}</p>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>ليه تنضم لينا؟</h2>
+        <p>مميزات حقيقية بنقدمها لكل فرد في الفريق</p>
+      </div>
+      <div class="list-grid benefits">
+        {% for item in benefits %}
+        <div class="list-row">
+          <span class="list-check">✓</span>
+          <span>{{ item }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>مين نبحث عنه؟</h2>
+        <p>الصفات اللي بتخلي التقديم مناسب ليك</p>
+      </div>
+      <div class="list-grid requirements">
+        {% for item in requirements %}
+        <div class="list-row">
+          <span class="list-check">✓</span>
+          <span>{{ item }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-final">
+    <div class="container">
+      <h2>جاهز تبدأ؟</h2>
+      <p>تواصل معانا دلوقتي على واتساب واعرف كل التفاصيل</p>
+      <a
+        class="btn btn-whatsapp"
+        id="whatsapp-btn-footer"
+        href="{{ settings.whatsapp_link }}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        💬 اعرف أكتر على واتساب
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      {{ settings.company_name }} &middot; جميع الحقوق محفوظة
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
